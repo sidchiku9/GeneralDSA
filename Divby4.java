@@ -18,7 +18,6 @@ class Divby4 {
             if(divbyFour > largest){
                 largest = divbyFour;
             }
-
             i++;
         }
         
