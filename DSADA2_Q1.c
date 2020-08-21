@@ -1,91 +1,108 @@
-//circular queue using array
-
-#include<stdio.h>
-
-#define size 5
-
-int items[size];
+#include <stdio.h>
+#include <stdlib.h>
+#define maxsize 5
+void insert();
+void delete ();
+void display();
 int front = -1, rear = -1;
+int queue[maxsize];
 
-int isFull(){
-    
-    if((front == rear + 1) || (front == 0 && rear == size - 1)){
-        return 1;
+int main()
+{
+    int choice;
+    while (choice != 4)
+    {
+        printf("\n1 Insert an element\n 2 Delete an element\n 3 Display the queue\n 4 Exit\n");
+        printf("\nEnter your choice : \n");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            insert();
+            break;
+        case 2:
+            delete ();
+            break;
+        case 3:
+            display();
+            break;
+        case 4:
+            exit(0);
+            break;
+        default:
+            printf("\nPlease enter a valid choice.\n");
+        }
     }
     return 0;
 }
-
-int isEmpty(){
-    if(front == -1){
-        return 1;
+void insert()
+{
+    int item;
+    printf("\nEnter the element\n");
+    scanf("%d", &item);
+    if ((rear + 1) % maxsize == front)
+    {
+        printf("\nOVERFLOW");
+        return;
     }
-    return 0;
+    else if (front == -1 && rear == -1)
+    {
+        front = 0;
+        rear = 0;
+    }
+    else if (rear == maxsize - 1 && front != 0)
+    {
+        rear = 0;
+    }
+    else
+    {
+        rear = (rear + 1) % maxsize;
+    }
+    queue[rear] = item;
+    printf("\nValue inserted ");
+}
+void delete ()
+{
+    int item;
+    if (front == -1 & rear == -1)
+    {
+        printf("\nUNDERFLOW\n");
+        return;
+    }
+    else if (front == rear)
+    {
+        front = -1;
+        rear = -1;
+    }
+    else if (front == maxsize - 1)
+    {
+        front = 0;
+    }
+    else
+        front = front + 1;
 }
 
-void enqueue(int element){
-
-    if(isFull()){
-        printf("The Circular Queue is full. \n");
-    }
-    else{
-        if(front == -1) front = 0 ;
-        rear = (rear + 1) % size;
-        items[rear] = element;
-
-        printf("The element inserted is : %d\n",element);
-    }
-}
-
-int dequeue(){
-    int element;
-
-    if(isEmpty()){
-        printf("The Circular Queue is empty. \n");
-        return(-1);
-    }
-    else{
-        element = items[front];
-
-        if(front == rear){
-            front = -1;
-            rear = -1;
+void display()
+{
+    int i;
+    if (front == -1)
+        printf("\nCircular Queue is Empty!!!\n");
+    else
+    {
+        i = front;
+        printf("\nCircular Queue Elements are : \n");
+        if (front <= rear)
+        {
+            while (i <= rear)
+                printf("%d\t Front : %d\t Rear :%d\n", queue[i++], queue[front], queue[rear]);
         }
-        else{
-            front = (front+1) % size;
+        else
+        {
+            while (i <= maxsize - 1)
+                printf("%d\t Front : %d\t Rear :%d\n", queue[i++], queue[front], queue[rear]);
+            i = 0;
+            while (i <= rear)
+                printf("%d\t Front : %d\t Rear :%d\n", queue[i++], queue[front], queue[rear]);
         }
-
-        printf("The element deleted is : %d\n",element);
-        return(element);
     }
-}
-
-void display(){
-    int i ;
-
-    if(isEmpty()){
-        printf("The circular queue is empty.\n");
-    }
-    else{
-        printf("Front : %d \n",front+1);
-        printf("Items : ");
-
-        for(i = front ; i != rear ; i = (i+1)%size){
-            printf("%d ",items[i]);
-        }
-
-        printf("Rear : %d \n",rear+1);
-    }
-}
-
-int main(){
-
-    enqueue(4);
-    enqueue(5);
-    enqueue(6);
-    enqueue(7);
-    enqueue(8);
-
-    display();
-
-    return 0;
 }
