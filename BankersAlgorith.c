@@ -2,7 +2,7 @@
 #include<stdlib.h>
 
 int main(){
-    int process, resources, i ;
+    int process, resources, i, j ;
 
     printf("How many processes do you have ? \n");
     scanf("%d",&process);
@@ -20,5 +20,22 @@ int main(){
         scanf("%d",&totalResources[resources]);
     }
 
+    printf("Enter the allocation of resources : \n");
+
+    for(i = 0 ; i < process ; i++){
+        for( j = 0 ; i < resources ; j++){
+            printf("Process%d Resource%d ",i,j);
+            scanf("%d",&allocation[i]][j]);
+        }
+    }
+
+    printf("Enter the max need of resources : \n");
+
+    for(i = 0 ; i < process ; i++){
+        for( j = 0 ; i < resources ; j++){
+            printf("Process%d Resource%d ",i,j);
+            scanf("%d",&maxNeed[i]][j]);
+        }
+    }
 
 }
