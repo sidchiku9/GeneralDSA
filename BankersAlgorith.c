@@ -61,7 +61,7 @@ int main(){
         for(j = 0 ; j < resources ; j++ ){
 
             if(availableRes[j] >= remNeed[i][j]){
-                flag++
+                flag++;
                 //could have used pop here to remove satisfied element
             }
         }
