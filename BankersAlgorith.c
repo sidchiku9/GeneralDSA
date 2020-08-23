@@ -55,17 +55,19 @@ int main(){
         }
     }
 
+    int flag,
+
     for(i = 0 ; i < process ; i++){
         for(j = 0 ; j < resources ; j++ ){
 
             if(availableRes[j] >= remNeed[i][j]){
-                printf("\n This works fine : %d",i);
+                printf(flag++;);
                 //could have used pop here to remove satisfied element
             }
-            else{
-                printf("Deadlock \n");
-                continue;
-            }
+        }
+
+        if(flag == resources){
+            printf("This works fine : %d\n",i);
         }
     }
 
