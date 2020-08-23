@@ -8,7 +8,7 @@ int main(){
     scanf("%d",&process);
 
     printf("How many resources do you have ? \n");
-    scanF("%d",&resources);
+    scanf("%d",&resources);
 
     int allocation[process][resources], maxNeed[process][resources], 
     availableRes[process][resources], remNeed[process][resources], totalResources[resources],
@@ -24,18 +24,18 @@ int main(){
     printf("Enter the allocation of resources : \n");
 
     for(i = 0 ; i < process ; i++){
-        for( j = 0 ; i < resources ; j++){
+        for( j = 0 ; j < resources ; j++){
             printf("Process%d Resource%d ",i,j);
-            scanf("%d",&allocation[i]][j]);
+            scanf("%d",&allocation[i][j]);
         }
     }
 
     printf("Enter the max need of resources : \n");
 
     for(i = 0 ; i < process ; i++){
-        for( j = 0 ; i < resources ; j++){
+        for( j = 0 ; j < resources ; j++){
             printf("Process%d Resource%d ",i,j);
-            scanf("%d",&maxNeed[i]][j]);
+            scanf("%d",&maxNeed[i][j]);
         }
     }
 
@@ -59,5 +59,7 @@ int main(){
             remNeed[i][j] = maxNeed[i][j] - allocation[i][j];
         }
     }
+
+    
 
 }
