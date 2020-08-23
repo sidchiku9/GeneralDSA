@@ -60,6 +60,19 @@ int main(){
         }
     }
 
-    
+    for(i = 0 ; i < process ; i++){
+        for(j = 0 ; j < resources ; j++ ){
 
+            if(availableRes[0][j] >= remNeed[i][j]){
+                printf("\n This works fine : %d",i);
+                //coudl have used pop here to remove satisfied element
+            }
+            else{
+                return;
+            }
+        }
+    }
+
+    return 0;
+    
 }
