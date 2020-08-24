@@ -52,10 +52,12 @@ int main(){
     for(i = 0 ; i < process ; i++){
         for(j = 0 ; j < resources ; j++){
             remNeed[i][j] = maxNeed[i][j] - allocation[i][j];
+            printf(" %d ",remNeed[i][j]);
         }
+        printf("\n");
     }
 
-    int flag;
+    /*int flag;
 
     for(i = 0 ; i < process ; i++){
         for(j = 0 ; j < resources ; j++ ){
@@ -69,7 +71,51 @@ int main(){
         if(flag == resources){
             printf("This works fine : %d\n",i);
         }
-    }
+    }*/
+
+    int k;
+    k = 0;
+    int n;
+    n = process;
+    int m;
+    m = resources;
+    int ans[n];
+    int ind;
+    ind = 0;
+    int y;
+    y = 0;
+
+    int f[n]; 
+    for (k = 0; k < n; k++) { 
+        f[k] = 0; 
+    } 
+
+    for (k = 0; k < 5; k++) { 
+        for (i = 0; i < n; i++) { 
+            if (f[i] == 0) { 
+  
+                int flag = 0; 
+                for (j = 0; j < m; j++) { 
+                    if (maxNeed[i][j] > availableRes[j]){ 
+                        flag = 1; 
+                         break; 
+                    } 
+                } 
+  
+                if (flag == 0) { 
+                    ans[ind++] = i; 
+                    for (y = 0; y < m; y++) 
+                        availableRes[y] += allocation[i][y]; 
+                    f[i] = 1; 
+                } 
+            } 
+        } 
+    } 
+
+    printf("Following is the SAFE Sequence\n"); 
+    for (i = 0; i < n - 1; i++) 
+        printf(" P%d ->", ans[i]); 
+    printf(" P%d", ans[n - 1]); 
 
     return 0;
 }
