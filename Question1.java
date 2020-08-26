@@ -48,11 +48,14 @@ public class Question1 {
                 q1.comparison();
                 break;
 
+                case 2 :
+                System.exit(1);
+                break;
+
                 default :
                 System.out.println("Invalid choice. Please try again.");
                 break;
             }
         }while(choice != 2);
-
     }
 }
