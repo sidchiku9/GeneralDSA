@@ -32,9 +32,27 @@ public class Question1 {
 
         Question1 q1 = new Question1();
 
-        q1.input();
+        int choice ;
 
-        q1.comparison();
+        Scanner scanner = new Scanner(System.in);
+
+        do{
+            System.out.println("1 : Perform comparison of numbers");
+            System.out.println("2 : Exit the program");
+
+            choice = scanner.nextInt();
+
+            switch(choice){
+                case 1 :
+                q1.input();
+                q1.comparison();
+                break;
+
+                default :
+                System.out.println("Invalid choice. Please try again.");
+                break;
+            }
+        }while(choice != 2);
 
     }
 }
