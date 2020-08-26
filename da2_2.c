@@ -1,8 +1,37 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <unistd.h>
 int main()
-{
-    printf("The process ID is: %d\n", getpid());
-}
+
+   {
+
+       pid_t child;
+
+       int status;
+
+       child = fork();
+
+       switch(child){
+
+           case -1 ;
+
+               perror("fork");
+
+               exit(1);
+
+           case 0 :
+
+               printf("%d\n",getppid());
+
+               break;
+
+           default :
+
+               printf("%d\n",getpid());
+
+               wait(&status);
+
+               break;
+
+        }
+
+        return 0;
+
+   }

@@ -19,6 +19,9 @@ public class Question1 {
     }
 
     void comparison() {
+
+        System.out.println("Using if-else conditional statement");
+
         if (NumOne > NumTwo && NumOne > NumThree) {
             System.out.println("The greatest of the three numbers is " + NumOne);
         } else if (NumTwo > NumOne && NumTwo > NumThree) {
@@ -28,34 +31,57 @@ public class Question1 {
         }
     }
 
+    void ternary() {
+        boolean numOne, numTwo;
+
+        numOne = (NumOne > NumTwo && NumOne > NumThree) ? (true) : (false);
+        numTwo = (NumTwo > NumOne && NumTwo > NumThree) ? (true) : (false);
+
+        System.out.println("Using the ternary operator");
+
+        if (numOne) {
+            System.out.println("The first number entered " + NumOne + " is the largest");
+        } else if (numTwo) {
+            System.out.println("The second number entered " + NumTwo + " is the largest");
+        } else {
+            System.out.println("The third number entered " + NumThree + " is the largest");
+        }
+
+    }
+
     public static void main(String[] args) {
 
         Question1 q1 = new Question1();
 
-        int choice ;
+        int choice;
 
         Scanner scanner = new Scanner(System.in);
 
-        do{
-            System.out.println("1 : Perform comparison of numbers");
-            System.out.println("2 : Exit the program");
+        do {
+            System.out.println("1 : Perform comparison of numbers using if-else");
+            System.out.println("2 : Perform comparison of numbers using ternary operator.");
+            System.out.println("3 : Exit the program");
 
             choice = scanner.nextInt();
 
-            switch(choice){
-                case 1 :
-                q1.input();
-                q1.comparison();
-                break;
+            switch (choice) {
+                case 1:
+                    q1.input();
+                    q1.comparison();
+                    break;
 
-                case 2 :
-                System.exit(1);
-                break;
+                case 2:
+                    q1.input();
+                    q1.ternary();
+                    break;
 
-                default :
-                System.out.println("Invalid choice. Please try again.");
-                break;
+                case 3:
+                    System.exit(1);
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
             }
-        }while(choice != 2);
+        } while (choice != 3);
     }
 }
