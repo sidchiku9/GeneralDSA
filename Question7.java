@@ -2,47 +2,46 @@
 import java.util.Scanner;
 
 public class Question7 {
-    int primeNumber(int number){
-        int m, flag = 0;
+    boolean primeNumber(int number){
+        int m;
+        boolean flag = true;
 
         m = number / 2;
 
         for(int i = 2 ; i <= m ; i++){
             if(number % i == 0){
-                System.out.println("The number is not prime");
-                flag = 1;
+                flag = false;
                 return flag;
             }
         }
-        if(flag == 0){
-            System.out.println("The number is prime.");
-        }
+
         return flag;
     }
 
     int revNumber(int number){
-        int remainder = 0, revNum = 0, numbergetrev = number;
+        int remainder = 0, revNum = 0;
 
         while(number != 0){
-            remainder = numbergetrev%10;
+            remainder = number%10;
             revNum = revNum*10 + remainder;
-            numbergetrev -= remainder;
-            numbergetrev /=  10; 
+            number -= remainder;
+            number /=  10; 
         }
 
         return revNum;
     }
 
     void emrip(int number){
-        int flagfor, flagback, fornumber;
+        boolean flagfor, flagback;
+        int revNum;
 
-        fornumber = number;
+        flagfor = primeNumber(number);
 
-        flagfor = primeNumber(fornumber);
+        revNum = revNumber(number);
 
-        flagback = primeNumber(revNumber(fornumber));
+        flagback = primeNumber(revNum);
 
-        if(flagfor == 0 && flagback == 0){
+        if(flagfor && flagback){
             System.out.println("The number is an EMRIP number");
         }
         else{
@@ -51,27 +50,20 @@ public class Question7 {
     }
 
     void primeOnetoHun(){
-        int m, flag = 0;
         for(int i = 1 ; i <= 100 ; i++){
-            m = i/2;
-
-            for(int j = 2 ; j <= m ; j++ ){
-                if(i % j == 0){
-                    flag = 1;
-                }
-            }
-            if(flag == 0){
-                System.out.println(i);
-            }
+           if(primeNumber(i)){
+               System.out.println(i);
+           }
         }
     }
 
     void pronic(int number){
         int flag = 0;
 
-        for(int i = 0 ; i<= number ; i++){
-            if(number == i*(i+1)){
+        for(int i = 0 ; i< number ; i++){
+            if(i*(i+1) ==  number){
                 flag = 1;
+                break;
             }
             else{
                 flag = 0;
@@ -92,8 +84,6 @@ public class Question7 {
 
         Question7 q7 = new Question7();
 
-        number = scanner.nextInt();
-
         do{
             System.out.println("1 : Check if number is PRONIC");
             System.out.println("2 : Check if number is EMRIP");
@@ -104,10 +94,14 @@ public class Question7 {
 
             switch (choice) {
                 case 1 :
+                    System.out.println("Enter the number to be tested");
+                    number = scanner.nextInt();
                     q7.pronic(number);
                     break;
                 
                 case 2 :
+                    System.out.println("Enter the number to be tested");
+                    number = scanner.nextInt();
                     q7.emrip(number);
                     break;
 
