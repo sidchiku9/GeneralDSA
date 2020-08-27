@@ -59,6 +59,7 @@ class Publication {
         System.out.println();
         System.out.println("Year : " + year);
         System.out.println("Price : " + price);
+        System.out.println();
     }
 }
 
