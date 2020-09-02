@@ -21,6 +21,22 @@ Node *insertAtBeginning(Node *head, int key){
     return temp;
 }
 
+//insert at the end of the linked list
+
+Node *insertAtEnd(Node *head, int key){
+    if(head == NULL)
+        return new Node(key);
+    
+    Node *current = head;
+
+    while(current->next != NULL){
+        current = current->next;
+    }
+
+    current->next = new Node(key);
+    return head;
+}
+
 void printList(Node *head){
     Node *current = head;
 
@@ -36,6 +52,9 @@ int main(){
     head = insertAtBeginning(head, 20);
     head = insertAtBeginning(head, 5);
     head = insertAtBeginning(head, 8);
+    head = insertAtEnd(head, 200);
+    head = insertAtEnd(head, 50);
+    head = insertAtEnd(head, 80);
 
     printList(head);
 
