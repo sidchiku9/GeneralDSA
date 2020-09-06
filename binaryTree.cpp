@@ -31,6 +31,14 @@ void preorder(Node *root){
     }
 }
 
+void postorder(Node *root){
+    if(root != NULL){
+        postorder(root -> left);
+        postorder(root -> right);
+        cout << root->key << " ";
+    }
+}
+
 int main(){
     Node *root = new Node(10);
     root->left = new Node(20);
@@ -42,6 +50,10 @@ int main(){
     cout << "\n";
 
     preorder(root);
+
+    cout << "\n";
+
+    postorder(root);
 
     return 0;
 }
