@@ -141,5 +141,7 @@ int main(){
             cout << "Invalid input. Please try again" << endl;
             break;
         }
-    }
+    }while(choice != 6);
+
+    return 0;
 }
