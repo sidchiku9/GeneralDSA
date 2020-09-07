@@ -1,45 +1,54 @@
-#include<stdlib.h>
-#include<iostream>
+#include <stdlib.h>
+#include <iostream>
 
 using namespace std;
 
-struct Node{
+struct Node
+{
     int key;
     Node *left;
     Node *right;
 
-    Node(int k){
+    Node(int k)
+    {
         key = k;
         left = NULL;
         right = NULL;
     }
 };
 
-void inorder(Node *root){
-    if(root != NULL){
+void inorder(Node *root)
+{
+    if (root != NULL)
+    {
         inorder(root->left);
         cout << root->key << " ";
         inorder(root->right);
     }
 }
 
-void preorder(Node *root){
-    if(root != NULL){
+void preorder(Node *root)
+{
+    if (root != NULL)
+    {
         cout << root->key << " ";
-        preorder(root -> left);
-        preorder(root -> right);
+        preorder(root->left);
+        preorder(root->right);
     }
 }
 
-void postorder(Node *root){
-    if(root != NULL){
-        postorder(root -> left);
-        postorder(root -> right);
+void postorder(Node *root)
+{
+    if (root != NULL)
+    {
+        postorder(root->left);
+        postorder(root->right);
         cout << root->key << " ";
     }
 }
 
-int main(){
+int main()
+{
     Node *root = new Node(10);
     root->left = new Node(20);
     root->right = new Node(30);
@@ -47,7 +56,8 @@ int main(){
 
     int choice;
 
-    do{
+    do
+    {
         cout << "\t\t MENU :" << endl;
         cout << "1 : Inorder Transversal" << endl;
         cout << "2 : Preorder Transversal" << endl;
@@ -80,13 +90,13 @@ int main(){
             cout << "Exiting the program" << endl;
             exit(1);
             break;
-        
+
         default:
             cout << "Invalid input. Please try again" << endl;
             break;
         }
 
-    }while(choice != 4);
+    } while (choice != 4);
 
     return 0;
 }
