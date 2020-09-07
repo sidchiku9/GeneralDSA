@@ -146,16 +146,19 @@ int main()
         case 3:
             cout << "Inorder transversal : " << endl;
             inOrder(root);
+            cout << endl;
             break;
 
         case 4:
             cout << "Postorder transversal : " << endl;
             postOrder(root);
+            cout << endl;
             break;
 
         case 5:
             cout << "Preorder transversal : " << endl;
             preOrder(root);
+            cout << endl;
             break;
 
         case 6:
