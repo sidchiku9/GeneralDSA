@@ -113,30 +113,34 @@ int main(){
         case 1:
             cout << "Enter the element you want to insert into the BST" << endl;
             cin >> element;
-            insertData(root, element);
+            root = insertData(root, element);
             break;
 
         case 2:
             cout << "Enter the element you want to delete from the BST" << endl;
             cin >> element;
-            deleteNode(root, element);
+            root = deleteNode(root, element);
             break;
 
         case 3 :
             cout << "Inorder transversal : " << endl;
             inOrder(root);
+            break;
 
         case 4 : 
             cout << "Postorder transversal : " << endl;
             postOrder(root);
+            break;
 
         case 5 :
             cout << "Preorder transversal : " << endl;
             preOrder(root);
+            break;
 
         case 6 : 
             cout << "Exiting the program" << endl;
             exit(1); 
+            break;
         
         default:
             cout << "Invalid input. Please try again" << endl;
