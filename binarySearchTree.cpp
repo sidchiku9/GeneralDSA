@@ -15,6 +15,16 @@ struct Node{
     }
 };
 
+Node *getSuccessor(Node *root){
+    Node *current = root->right;
+
+    while(current != NULL && current->left != NULL){
+        current = current -> left;
+    }
+
+    return current;
+}
+
 Node *insertData(Node *root, int x){
     if(root == NULL)
     return new Node(x);
@@ -55,16 +65,7 @@ Node *deleteNode(Node *root, int x){
             root->right = deleteNode(root->right,successor->key);
         }
     }
-}
-
-Node *getSuccessor(Node *root){
-    Node *current = root->right;
-
-    while(current != NULL && current->left != NULL){
-        current = current -> left;
-    }
-
-    return current;
+    return root;
 }
 
 void inOrder(Node *root){
