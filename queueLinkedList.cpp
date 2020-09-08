@@ -61,7 +61,9 @@ int main(){
     struct Queue q;
     int choice, data;
 
-    
+    do{
+        cout << "\t\t MENU" << endl;
+    }
 
     return 0;
 }
