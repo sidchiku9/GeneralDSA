@@ -24,14 +24,14 @@ int main()
         printf("\t\t MENU : \n");
         printf("1 : Addition of polynomials\n");
         printf("2 : Multiplication of polynomials\n");
-        printf("3 : Exit the program");
+        printf("3 : Exit the program\n");
         printf("Please enter your choice : \n");
         scanf("%d",&choice);
+        struct node *start1 = NULL, *start2 = NULL;
 
         switch (choice)
         {
         case 1:
-            struct node *start1 = NULL, *start2 = NULL;
             printf("Enter polynomial 1 :\n");
             start1 = create(start1);
 
@@ -48,7 +48,6 @@ int main()
             break;
 
         case 2:
-            struct node *start1 = NULL, *start2 = NULL;
             printf("Enter polynomial 1 :\n");
             start1 = create(start1);
 
