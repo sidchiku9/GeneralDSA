@@ -1,19 +1,28 @@
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.concurrent.*;
+import java.util.*;
+
 
 public class CollectionsOne{
     public static void main(String[] args){
         ArrayList<String> names = new ArrayList<String>();
-        names.add("Siddharth");
-        names.add("Avanee");
-        names.add("Deepti");
-        names.add("Meetali");
+        String name;
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do{
+            System.out.println("Enter a name");
+            name = scanner.next();
+            names.add(name);
+            System.out.println("Do you wanna enter more names ? If so enter any integer except 1 ");
+            choice = scanner.nextInt();
+        }while(choice != 1);
 
         Iterator iterator = names.iterator();
 
+        System.out.println("Names : ");
         while(iterator.hasNext()){
-            System.out.println("Name : " + iterator.next());
+            System.out.println(iterator.next());
         }
     
     }
