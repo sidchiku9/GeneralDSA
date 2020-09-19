@@ -28,11 +28,5 @@ public class CollectionsOne{
         System.out.println(names.get(1));
 
         names.set(1, "YOYO");
-
-        System.out.println("Names : ");
-        while(iterator.hasNext()){
-            System.out.println(iterator.next());
-        }
-
     }
 }
