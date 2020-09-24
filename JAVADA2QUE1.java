@@ -54,7 +54,7 @@ class PrimeNumber extends Thread {
 }
 
 public class JAVADA2QUE1 {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter the number you want to check for palindrome : ");
