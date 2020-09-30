@@ -55,6 +55,7 @@ void display(int arr[], int n)
     {
         printf(" %d ", arr[i]);
     }
+    printf("\n");
 }
 
 void bubble_sort(int arr[], int n)
@@ -74,6 +75,7 @@ void bubble_sort(int arr[], int n)
     }
     printf("After Bubble sort Elements are : ");
     display(arr, n);
+    printf("\n");
 }
 
 void selection_sort(int arr[], int n)
@@ -93,6 +95,7 @@ void selection_sort(int arr[], int n)
     }
     printf("After Selection sort Elements are : ");
     display(arr, n);
+    printf("\n");
 }
 
 void insertion_sort(int arr[], int n)
@@ -111,4 +114,5 @@ void insertion_sort(int arr[], int n)
     }
     printf("After Insertion sort Elements are : ");
     display(arr, n);
+    printf("\n");
 }
