@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 void create(int[]);
-void down_adjust(int[], inta);
+void down_adjust(int[], int a);
 
 int main()
 {
