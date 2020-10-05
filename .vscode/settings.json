@@ -15,6 +15,7 @@
         "*.HLASM*": "hlasm",
         "*.HLA*": "hlasm",
         "ostream": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "iostream": "cpp"
     }
 }
