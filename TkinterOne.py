@@ -11,6 +11,7 @@ Vendor = tkinter.Tk()
 def CustomerDial() :
     Buy = tkinter.Button(Customer, text = "Buy Items", command = BuyItems)
     Give = tkinter.Button(Customer, text = "Give Projects", command = GiveProjects)
+    Make = tkinter.Button(Customer, text = "Make Payments", command = MakePayments)
     Buy.pack()
     Give.pack()
 
@@ -35,6 +36,9 @@ def TakeProjects() :
 def RequestPayments() :
     print('The request payments thingy')
     #has insert function
+
+def MakePayments() :
+    print('The make payments functions')
 
 #both will be using the same tables 
 
