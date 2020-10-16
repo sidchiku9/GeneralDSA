@@ -8,20 +8,66 @@ top = tkinter.Tk()
 
 def CustomerDial() :
     Customer = tkinter.Tk()
-    Buy = tkinter.Button(Customer, text = "Buy Items", command = BuyItems)
-    Give = tkinter.Button(Customer, text = "Give Projects", command = GiveProjects)
-    Make = tkinter.Button(Customer, text = "Make Payments", command = MakePayments)
-    Buy.pack()
-    Give.pack()
+    NeedsItems = tkinter.Button(Customer, text = "Needs Items", command = NeedItem)
+    MakesPayments = tkinter.Button(Customer, text = "Makes Payments", command = MakePayment)
+    PlacesOrders = tkinter.Button(Customer, text = "Place Orders", command = PlaceOrder)
+    GivesProjects = tkinter.Button(Customer, text = "Give Projects", command = GiveProject)
+    NeedsItems.pack()
+    MakesPayments.pack()
+    PlacesOrders.pack()
+    GivesProjects.pack()
+
+def NeedItem() :
+    print('Needs items')
+
+def MakePayment() :
+    print('Make payment')
+
+def PlaceOrder() :
+    print('Place order')
+
+def GiveProject() :
+    print('Give project')
 
 def VendorDial() :
     Vendor = tkinter.Tk()
-    Take = tkinter.Button(Vendor, text = "Take Projects", command = TakeProjects)
-    Request = tkinter.Button(Vendor, text = "Request Payments", command = RequestPayments)
-    Take.pack()
-    Request.pack()
+    TakesPayment = tkinter.Button(Vendor, text = "Take Payments", command = TakePayments)
+    SellsItem = tkinter.Button(Vendor, text = "Sell Items", command = SellsItems)
+    CompletesOrder = tkinter.Button(Vendor, text = "Complete Order", command = CompleteOrder)
+    TakesProject = tkinter.Button(Vendor, text = "Takes Projects", command = TakesProjects)
+    CompletesProject = tkinter.Button(Vendor, text = "Complete Project", command = CompletesProjects)
+    TakesPayment.pack()
+    SellsItem.pack()
+    CompletesOrder.pack()
+    TakesProject.pack()
+    CompletesProject.pack()
 
-def BuyItems() :
+def TakePayments() :
+    print('Take payments')
+
+def SellsItems() :
+    print('Sells items')
+
+def CompleteOrder() :
+    print('Complete order')
+
+def TakesProjects() :
+    print('Takes projects')
+
+def CompletesProjects() :
+    print('Completes projects')
+
+def HelloCallBack() :
+    C = tkinter.Button(top, text = "Customer", command = CustomerDial)
+    V = tkinter.Button(top, text = "Vendor", command = VendorDial)
+    C.pack()
+    V.pack()
+
+HelloCallBack()
+
+top.mainloop()
+
+'''def BuyItems() :
     print('The buy items thing')
     #has insert function
 
@@ -40,14 +86,4 @@ def RequestPayments() :
 def MakePayments() :
     print('The make payments functions')
 
-#both will be using the same tables 
-
-def HelloCallBack() :
-    C = tkinter.Button(top, text = "Customer", command = CustomerDial)
-    V = tkinter.Button(top, text = "Vendor", command = VendorDial)
-    C.pack()
-    V.pack()
-
-HelloCallBack()
-
-top.mainloop()
+#both will be using the same tables '''
