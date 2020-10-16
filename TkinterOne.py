@@ -5,10 +5,9 @@ import mysql.connector
 db_connection = mysql.connector.connect(host = '127.0.0.1', user = 'root', password = 'Chiku$!d9',auth_plugin='mysql_native_password')
 
 top = tkinter.Tk()
-Customer = tkinter.Tk()
-Vendor = tkinter.Tk()
 
 def CustomerDial() :
+    Customer = tkinter.Tk()
     Buy = tkinter.Button(Customer, text = "Buy Items", command = BuyItems)
     Give = tkinter.Button(Customer, text = "Give Projects", command = GiveProjects)
     Make = tkinter.Button(Customer, text = "Make Payments", command = MakePayments)
@@ -16,6 +15,7 @@ def CustomerDial() :
     Give.pack()
 
 def VendorDial() :
+    Vendor = tkinter.Tk()
     Take = tkinter.Button(Vendor, text = "Take Projects", command = TakeProjects)
     Request = tkinter.Button(Vendor, text = "Request Payments", command = RequestPayments)
     Take.pack()
