@@ -1,6 +1,5 @@
 import tkinter
 from tkinter import *
-from sqlalchemy import create_engine
 import mysql.connector
 
 db_connection = mysql.connector.connect(host = '127.0.0.1', user = 'root', password = 'Chiku$!d9',auth_plugin='mysql_native_password', database = 'Goconstruct')
@@ -61,6 +60,10 @@ def add_data() :
     my_class = t2.get("1.0",END)    # read class
     my_mark = t3.get("1.0",END) # read mark
     my_gender = t4.get("1.0",END)
+    query="INSERT INTO  `Item` (`ItemNumber` ,`Quantity` ,`Price` ,`OrderItem`) VALUES(%s,%s,%s,%s)"
+    my_data=(my_name,my_class,my_mark,my_gender)
+    myCursor.execute(query,my_data)
+    db_connection.commit()
     print("Query inserted")
 
 def MakePayment() :
