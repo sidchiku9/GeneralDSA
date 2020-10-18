@@ -1,13 +1,15 @@
 import tkinter
-from tkinter import messagebox
+from tkinter import *
 import mysql.connector
 
 db_connection = mysql.connector.connect(host = '127.0.0.1', user = 'root', password = 'Chiku$!d9',auth_plugin='mysql_native_password', database = 'Goconstruct')
 
 main = tkinter.Tk()
+main.title('Entry Window')
 
 def CustomerDial() :
     Customer = tkinter.Tk()
+    Customer.title('Customer Functions')
     NeedsItems = tkinter.Button(Customer, text = "Needs Items", command = NeedItem)
     MakesPayments = tkinter.Button(Customer, text = "Makes Payments", command = MakePayment)
     PlacesOrders = tkinter.Button(Customer, text = "Place Orders", command = PlaceOrder)
@@ -18,6 +20,7 @@ def CustomerDial() :
     GivesProjects.pack(padx=20, pady=20)
 
 def NeedItem() :
+    
     print('Needs items') #insert sql query
 
 def MakePayment() :
@@ -31,6 +34,7 @@ def GiveProject() :
 
 def VendorDial() :
     Vendor = tkinter.Tk()
+    Vendor.title('Vendor Functions')
     TakesPayment = tkinter.Button(Vendor, text = "Take Payments", command = TakePayments)
     SellsItem = tkinter.Button(Vendor, text = "Sell Items", command = SellsItems)
     CompletesOrder = tkinter.Button(Vendor, text = "Complete Order", command = CompleteOrder)
