@@ -56,7 +56,7 @@ def NeedItem() :
     tOT = tkinter.Text(my_w,  height=1, width=10,bg='white') 
     tOT.grid(row=5,column=2) 
 
-    b1 = tkinter.Button(my_w,  text='Add Record', width=10, command=lambda: delete_data_item())  
+    b1 = tkinter.Button(my_w,  text='Buy', width=10, command=lambda: delete_data_item())  
     b1.grid(row=7,column=2) 
 
 def delete_data_item() :
@@ -95,7 +95,7 @@ def VendorDial() :
 def TakePayments() :
     print('Take payments')
 
-def SellsItem() :
+def SellsItems() :
     global t1, t2, t3, t4
 
     my_w = tkinter.Tk()
@@ -124,7 +124,7 @@ def SellsItem() :
     t4 = tkinter.Text(my_w,  height=1, width=10,bg='white') 
     t4.grid(row=6,column=2) 
 
-    b1 = tkinter.Button(my_w,  text='Add Record', width=10, command=lambda: add_data())  
+    b1 = tkinter.Button(my_w,  text='Put the item on sale', width=10, command=lambda: add_data_item())  
     b1.grid(row=7,column=2) 
 
 def add_data_item() :
@@ -137,7 +137,7 @@ def add_data_item() :
     myCursor.execute(query,my_data)
     db_connection.commit()
     t1.delete('1.0',END)
-    t2.delete('1.0',END)  # reset the text entry box
+    t2.delete('1.0',END) 
     t3.delete('1.0',END)
     t4.delete('1.0',END)
     print("Query executed")
@@ -160,24 +160,3 @@ def HelloCallBack() :
 HelloCallBack()
 
 main.mainloop()
-
-'''def BuyItems() :
-    print('The buy items thing')
-    #has insert function
-
-def GiveProjects() :
-    print('The give projects thingy')
-    #has insert function
-
-def TakeProjects() :
-    print('The take projects thingy')
-    #has delete function
-
-def RequestPayments() :
-    print('The request payments thingy')
-    #has insert function
-
-def MakePayments() :
-    print('The make payments functions')
-
-#both will be using the same tables '''
