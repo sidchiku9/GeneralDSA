@@ -131,7 +131,67 @@ def PlaceOrder() :
     print('Place order')
 
 def GiveProject() :
+    global tGiveProj, tGiveName, tGiveNum, tGiveVend, tGiveItem, tGiveDetails
+
+    my_w = tkinter.Tk()
+    my_w.geometry("400x400")
+    my_w.title("Give Project")
+    l0 = tkinter.Label(my_w,  text='Give Project',font=('Helvetica', 16), width=30,anchor="c" )
+    l0.grid(row=1,column=1,columnspan=4)
+
+    l1 = tkinter.Label(my_w,  text='Project Number : ', width=10,anchor="c" )  
+    l1.grid(row=3,column=1)
+    tGiveProj = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tGiveProj.grid(row=3,column=2) 
+    
+    l2 = tkinter.Label(my_w,  text='Customer Name : ', width=10,anchor="c" )  
+    l2.grid(row=4,column=1)
+    tGiveName = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tGiveName.grid(row=4,column=2) 
+
+    l3 = tkinter.Label(my_w,  text='Customer Number : ', width=10,anchor="c" )  
+    l3.grid(row=5,column=1)
+    tGiveNum = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tGiveNum.grid(row=5,column=2) 
+
+    l4 = tkinter.Label(my_w,  text='Vendor Number : ', width=10,anchor="c" )  
+    l4.grid(row=6,column=1)
+    tGiveVend = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tGiveVend.grid(row=6,column=2) 
+
+    l3 = tkinter.Label(my_w,  text='Item : ', width=10,anchor="c" )  
+    l3.grid(row=7,column=1)
+    tGiveItem = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tGiveItem.grid(row=5,column=2) 
+
+    l4 = tkinter.Label(my_w,  text='Details : ', width=10,anchor="c" )  
+    l4.grid(row=8,column=1)
+    tGiveDetails = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tGiveDetails.grid(row=6,column=2) 
+
+    b1 = tkinter.Button(my_w,  text='Give Project', width=10, command=lambda: giveTheProject())  
+    b1.grid(row=10,column=2) 
+
     print('Give project')
+
+def giveTheProject() :
+    my_name = tGiveProj.get("1.0",END) 
+    my_class = tGiveName.get("1.0",END)  
+    my_mark = tGiveNum.get("1.0",END)
+    my_gender = tGiveVend.get("1.0",END)
+    my_item = tGiveItem.get("1.0",END)
+    my_details = tGiveDetails.get("1.0",END)
+    query="INSERT INTO  `Project` (`ProjectNumber` ,`CustomerName` ,`CustomerNumber` ,`VendorNumber`, `Item`, `Details`) VALUES (%s,%s,%s,%s,%s,%s)"
+    my_data=(my_name,my_class,my_mark,my_gender, my_item, my_details)
+    myCursor.execute(query,my_data)
+    db_connection.commit()
+    tGiveProj.delete('1.0',END)
+    tGiveName.delete('1.0',END) 
+    tGiveNum.delete('1.0',END)
+    tGiveVend.delete('1.0',END)
+    tGiveItem.delete('1.0',END)
+    tGiveDetails.delete('1.0',END)
+    print("Query executed")
 
 def VendorDial() :
     Vendor = tkinter.Tk()
