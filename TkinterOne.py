@@ -21,6 +21,37 @@ def CustomerDial() :
     GivesProjects.pack(padx=20, pady=20)
 
 def NeedItem() :
+    myCursor.execute("SELECT * FROM Item")
+
+    
+
+def MakePayment() :
+    print('Make payment')
+
+def PlaceOrder() :
+    print('Place order')
+
+def GiveProject() :
+    print('Give project')
+
+def VendorDial() :
+    Vendor = tkinter.Tk()
+    Vendor.title('Vendor Functions')
+    TakesPayment = tkinter.Button(Vendor, text = "Take Payments", command = TakePayments)
+    SellsItem = tkinter.Button(Vendor, text = "Sell Items", command = SellsItems)
+    CompletesOrder = tkinter.Button(Vendor, text = "Complete Order", command = CompleteOrder)
+    TakesProject = tkinter.Button(Vendor, text = "Takes Projects", command = TakesProjects)
+    CompletesProject = tkinter.Button(Vendor, text = "Complete Project", command = CompletesProjects)
+    TakesPayment.pack(padx=20, pady=20)
+    SellsItem.pack(padx=20, pady=20)
+    CompletesOrder.pack(padx=20, pady=20)
+    TakesProject.pack(padx=20, pady=20)
+    CompletesProject.pack(padx=20, pady=20)
+
+def TakePayments() :
+    print('Take payments')
+
+def SellsItem() :
     global t1, t2, t3, t4
 
     my_w = tkinter.Tk()
@@ -52,48 +83,20 @@ def NeedItem() :
     b1 = tkinter.Button(my_w,  text='Add Record', width=10, command=lambda: add_data())  
     b1.grid(row=7,column=2) 
 
-    my_str = tkinter.StringVar()
-    my_str.set("Output")
-
 def add_data() :
-    my_name = t1.get("1.0",END) # read name
-    my_class = t2.get("1.0",END)    # read class
-    my_mark = t3.get("1.0",END) # read mark
+    my_name = t1.get("1.0",END) 
+    my_class = t2.get("1.0",END)  
+    my_mark = t3.get("1.0",END)
     my_gender = t4.get("1.0",END)
     query="INSERT INTO  `Item` (`ItemNumber` ,`Quantity` ,`Price` ,`OrderItem`) VALUES(%s,%s,%s,%s)"
     my_data=(my_name,my_class,my_mark,my_gender)
     myCursor.execute(query,my_data)
     db_connection.commit()
+    t1.delete('1.0',END)
+    t2.delete('1.0',END)  # reset the text entry box
+    t3.delete('1.0',END)
+    t4.delete('1.0',END)
     print("Query inserted")
-
-def MakePayment() :
-    print('Make payment')
-
-def PlaceOrder() :
-    print('Place order')
-
-def GiveProject() :
-    print('Give project')
-
-def VendorDial() :
-    Vendor = tkinter.Tk()
-    Vendor.title('Vendor Functions')
-    TakesPayment = tkinter.Button(Vendor, text = "Take Payments", command = TakePayments)
-    SellsItem = tkinter.Button(Vendor, text = "Sell Items", command = SellsItems)
-    CompletesOrder = tkinter.Button(Vendor, text = "Complete Order", command = CompleteOrder)
-    TakesProject = tkinter.Button(Vendor, text = "Takes Projects", command = TakesProjects)
-    CompletesProject = tkinter.Button(Vendor, text = "Complete Project", command = CompletesProjects)
-    TakesPayment.pack(padx=20, pady=20)
-    SellsItem.pack(padx=20, pady=20)
-    CompletesOrder.pack(padx=20, pady=20)
-    TakesProject.pack(padx=20, pady=20)
-    CompletesProject.pack(padx=20, pady=20)
-
-def TakePayments() :
-    print('Take payments')
-
-def SellsItems() :
-    print('Sells items') #select and delete sql queryz
 
 def CompleteOrder() :
     print('Complete order')
