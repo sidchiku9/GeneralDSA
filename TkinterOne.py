@@ -4,10 +4,11 @@ import mysql.connector
 
 db_connection = mysql.connector.connect(host = '127.0.0.1', user = 'root', password = 'Chiku$!d9',auth_plugin='mysql_native_password')
 
-top = tkinter.Tk()
+main = tkinter.Tk()
 
 def CustomerDial() :
     Customer = tkinter.Tk()
+    Customer.geometry()
     NeedsItems = tkinter.Button(Customer, text = "Needs Items", command = NeedItem)
     MakesPayments = tkinter.Button(Customer, text = "Makes Payments", command = MakePayment)
     PlacesOrders = tkinter.Button(Customer, text = "Place Orders", command = PlaceOrder)
@@ -18,7 +19,7 @@ def CustomerDial() :
     GivesProjects.pack()
 
 def NeedItem() :
-    print('Needs items')
+    print('Needs items') #insert sql query
 
 def MakePayment() :
     print('Make payment')
@@ -46,7 +47,7 @@ def TakePayments() :
     print('Take payments')
 
 def SellsItems() :
-    print('Sells items')
+    print('Sells items') #select and delete sql queryz
 
 def CompleteOrder() :
     print('Complete order')
@@ -58,14 +59,14 @@ def CompletesProjects() :
     print('Completes projects')
 
 def HelloCallBack() :
-    C = tkinter.Button(top, text = "Customer", command = CustomerDial)
-    V = tkinter.Button(top, text = "Vendor", command = VendorDial)
-    C.pack()
-    V.pack()
+    C = tkinter.Button(main, text = "Customer", command = CustomerDial)
+    V = tkinter.Button(main, text = "Vendor", command = VendorDial)
+    C.pack(padx=20, pady=20)
+    V.pack(padx=20, pady=20)
 
 HelloCallBack()
 
-top.mainloop()
+main.mainloop()
 
 '''def BuyItems() :
     print('The buy items thing')
