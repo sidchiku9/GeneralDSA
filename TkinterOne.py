@@ -2,21 +2,20 @@ import tkinter
 from tkinter import messagebox
 import mysql.connector
 
-db_connection = mysql.connector.connect(host = '127.0.0.1', user = 'root', password = 'Chiku$!d9',auth_plugin='mysql_native_password')
+db_connection = mysql.connector.connect(host = '127.0.0.1', user = 'root', password = 'Chiku$!d9',auth_plugin='mysql_native_password', database = 'Goconstruct')
 
 main = tkinter.Tk()
 
 def CustomerDial() :
     Customer = tkinter.Tk()
-    Customer.geometry()
     NeedsItems = tkinter.Button(Customer, text = "Needs Items", command = NeedItem)
     MakesPayments = tkinter.Button(Customer, text = "Makes Payments", command = MakePayment)
     PlacesOrders = tkinter.Button(Customer, text = "Place Orders", command = PlaceOrder)
     GivesProjects = tkinter.Button(Customer, text = "Give Projects", command = GiveProject)
-    NeedsItems.pack()
-    MakesPayments.pack()
-    PlacesOrders.pack()
-    GivesProjects.pack()
+    NeedsItems.pack(padx=20, pady=20)
+    MakesPayments.pack(padx=20, pady=20)
+    PlacesOrders.pack(padx=20, pady=20)
+    GivesProjects.pack(padx=20, pady=20)
 
 def NeedItem() :
     print('Needs items') #insert sql query
@@ -37,11 +36,11 @@ def VendorDial() :
     CompletesOrder = tkinter.Button(Vendor, text = "Complete Order", command = CompleteOrder)
     TakesProject = tkinter.Button(Vendor, text = "Takes Projects", command = TakesProjects)
     CompletesProject = tkinter.Button(Vendor, text = "Complete Project", command = CompletesProjects)
-    TakesPayment.pack()
-    SellsItem.pack()
-    CompletesOrder.pack()
-    TakesProject.pack()
-    CompletesProject.pack()
+    TakesPayment.pack(padx=20, pady=20)
+    SellsItem.pack(padx=20, pady=20)
+    CompletesOrder.pack(padx=20, pady=20)
+    TakesProject.pack(padx=20, pady=20)
+    CompletesProject.pack(padx=20, pady=20)
 
 def TakePayments() :
     print('Take payments')
