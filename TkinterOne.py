@@ -162,12 +162,12 @@ def GiveProject() :
     l3 = tkinter.Label(my_w,  text='Item : ', width=10,anchor="c" )  
     l3.grid(row=7,column=1)
     tGiveItem = tkinter.Text(my_w,  height=1, width=10,bg='white') 
-    tGiveItem.grid(row=5,column=2) 
+    tGiveItem.grid(row=7,column=2) 
 
     l4 = tkinter.Label(my_w,  text='Details : ', width=10,anchor="c" )  
     l4.grid(row=8,column=1)
     tGiveDetails = tkinter.Text(my_w,  height=1, width=10,bg='white') 
-    tGiveDetails.grid(row=6,column=2) 
+    tGiveDetails.grid(row=8,column=2) 
 
     b1 = tkinter.Button(my_w,  text='Give Project', width=10, command=lambda: giveTheProject())  
     b1.grid(row=10,column=2) 
@@ -305,9 +305,32 @@ def CompleteOrder() :
     print('Complete order')
 
 def TakesProjects() :
+    myCursor.execute("SELECT * FROM Project")
+    my_wo = tkinter.Tk()
+    my_wo.title("Requested projects ")
+    my_wo.geometry("400x250")
+    i=0 
+    for Item in myCursor: 
+        for j in range(6):
+            e = Entry(my_wo, width=10, fg='blue') 
+            e.grid(row=i, column=j) 
+            e.insert(END, Item[j])
+        i=i+1
     print('Takes projects')
 
 def CompletesProjects() :
+    myCursor.execute("SELECT * FROM Project")
+    my_wo = tkinter.Tk()
+    my_wo.title("Existing projects ")
+    my_wo.geometry("400x250")
+    i=0 
+    for item in range(10): 
+        for j in range(10):
+            e = Entry(my_wo, width=20, fg='blue', font=('Arial',16,'bold'))  
+            e.grid(row=i, column=j) 
+            e.insert(END, item[i][j])
+        i=i+1
+    print('Takes projects')
     print('Completes projects')
 
 def HelloCallBack() :
