@@ -21,9 +21,53 @@ def CustomerDial() :
     GivesProjects.pack(padx=20, pady=20)
 
 def NeedItem() :
-    myCursor.execute("SELECT * FROM Item")
+    global tItem, tQuantity, tOT 
 
+    myCursor.execute("SELECT * FROM Item")
+    my_wo = tkinter.Tk()
+    my_wo.title("Available Items")
+    my_wo.geometry("400x250")
+    i=0 
+    for Item in myCursor: 
+        for j in range(len(Item)):
+            e = Entry(my_wo, width=10, fg='blue') 
+            e.grid(row=i, column=j) 
+            e.insert(END, Item[j])
+        i=i+1
+
+    my_w = tkinter.Tk()
+    my_w.geometry("400x400")
+    my_w.title("Buy Items")
+    l0 = tkinter.Label(my_w,  text='Needs Items',font=('Helvetica', 16), width=30,anchor="c" )
+    l0.grid(row=1,column=1,columnspan=4)
+
+    l1 = tkinter.Label(my_w,  text='Item Number : ', width=10,anchor="c" )  
+    l1.grid(row=3,column=1)
+    tItem = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tItem.grid(row=3,column=2) 
     
+    l2 = tkinter.Label(my_w,  text='Quantity : ', width=10,anchor="c" )  
+    l2.grid(row=4,column=1)
+    tQuantity = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tQuantity.grid(row=4,column=2) 
+
+    l3 = tkinter.Label(my_w,  text='Order : ', width=10,anchor="c" )  
+    l3.grid(row=5,column=1)
+    tOT = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tOT.grid(row=5,column=2) 
+
+    b1 = tkinter.Button(my_w,  text='Add Record', width=10, command=lambda: delete_data_item())  
+    b1.grid(row=7,column=2) 
+
+def delete_data_item() :
+    my_name = tItem.get("1.0",END) 
+    query="DELETE FROM `Item` WHERE ItemNumber = %s"
+    myCursor.execute(query,(my_name,))
+    db_connection.commit()
+    tItem.delete('1.0',END)
+    tQuantity.delete('1.0',END) 
+    tOT.delete('1.0',END)
+    print("Query executed")
 
 def MakePayment() :
     print('Make payment')
@@ -83,7 +127,7 @@ def SellsItem() :
     b1 = tkinter.Button(my_w,  text='Add Record', width=10, command=lambda: add_data())  
     b1.grid(row=7,column=2) 
 
-def add_data() :
+def add_data_item() :
     my_name = t1.get("1.0",END) 
     my_class = t2.get("1.0",END)  
     my_mark = t3.get("1.0",END)
@@ -96,7 +140,7 @@ def add_data() :
     t2.delete('1.0',END)  # reset the text entry box
     t3.delete('1.0',END)
     t4.delete('1.0',END)
-    print("Query inserted")
+    print("Query executed")
 
 def CompleteOrder() :
     print('Complete order')
