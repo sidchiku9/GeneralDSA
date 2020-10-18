@@ -93,7 +93,51 @@ def VendorDial() :
     CompletesProject.pack(padx=20, pady=20)
 
 def TakePayments() :
-    print('Take payments')
+    global tNameReq, tPhoneReq, tAddressReq, tItemReq
+
+    my_w = tkinter.Tk()
+    my_w.geometry("400x400")
+    my_w.title("Request Payment")
+    l0 = tkinter.Label(my_w,  text='Request Payments',font=('Helvetica', 16), width=30,anchor="c" )
+    l0.grid(row=1,column=1,columnspan=4)
+
+    l1 = tkinter.Label(my_w,  text='Customer Name : ', width=10,anchor="c" )  
+    l1.grid(row=3,column=1)
+    tNameReq = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tNameReq.grid(row=3,column=2) 
+    
+    l2 = tkinter.Label(my_w,  text='Customer Phone: ', width=10,anchor="c" )  
+    l2.grid(row=4,column=1)
+    tPhoneReq = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tPhoneReq.grid(row=4,column=2) 
+
+    l3 = tkinter.Label(my_w,  text='Customer Address : ', width=10,anchor="c" )  
+    l3.grid(row=5,column=1)
+    tAddressReq = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tAddressReq.grid(row=5,column=2) 
+
+    l4 = tkinter.Label(my_w,  text='Ordered Item : ', width=10,anchor="c" )  
+    l4.grid(row=6,column=1)
+    tItemReq = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tItemReq.grid(row=6,column=2) 
+
+    b1 = tkinter.Button(my_w,  text='Put the item on sale', width=10, command=lambda: requestPayment())  
+    b1.grid(row=7,column=2)
+
+def requestPayment() :
+    my_name = tNameReq.get("1.0",END) 
+    my_class = tPhoneReq.get("1.0",END)  
+    my_mark = tAddressReq.get("1.0",END)
+    my_gender = tItemReq.get("1.0",END)
+    query="INSERT INTO  `Payment` (`Name` ,`Phone` ,`Address` ,`Item`) VALUES(%s,%s,%s,%s)"
+    my_data=(my_name,my_class,my_mark,my_gender)
+    myCursor.execute(query,my_data)
+    db_connection.commit()
+    t1.delete('1.0',END)
+    t2.delete('1.0',END) 
+    t3.delete('1.0',END)
+    t4.delete('1.0',END)
+    print("Query executed")
 
 def SellsItems() :
     global t1, t2, t3, t4
