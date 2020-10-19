@@ -355,19 +355,18 @@ def taketheProj() :
     print("Query executed")
 
 def CompletesProjects() :
+    global tCompProj, tCompName, tCompDetails
     myCursor.execute("SELECT * FROM Project")
     my_wo = tkinter.Tk()
-    my_wo.title("Existing projects ")
-    my_wo.geometry("400x250")
+    my_wo.title("Requested projects ")
+    my_wo.geometry("400x250") 
     i=0 
-    for item in range(10): 
-        for j in range(10):
-            e = Entry(my_wo, width=20, fg='blue', font=('Arial',16,'bold'))  
+    for Project in myCursor: 
+        for j in range(len(Project)):
+            e = Entry(my_wo, width=10, fg='blue') 
             e.grid(row=i, column=j) 
-            e.insert(END, item[i][j])
+            e.insert(END, Project[j])
         i=i+1
-    print('Takes projects')
-    print('Completes projects')
 
 def HelloCallBack() :
     C = tkinter.Button(main, text = "Customer", command = CustomerDial)
