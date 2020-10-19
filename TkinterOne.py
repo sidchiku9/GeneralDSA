@@ -368,6 +368,41 @@ def CompletesProjects() :
             e.insert(END, Project[j])
         i=i+1
 
+    my_w = tkinter.Tk()
+    my_w.geometry("400x400")
+    my_w.title("Take Project")
+    l0 = tkinter.Label(my_w,  text='Project Completed!',font=('Helvetica', 16), width=30,anchor="c" )
+    l0.grid(row=1,column=1,columnspan=4)
+
+    l1 = tkinter.Label(my_w,  text='Project Number : ', width=10,anchor="c" )  
+    l1.grid(row=3,column=1)
+    tCompProj = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tCompProj.grid(row=3,column=2) 
+    
+    l2 = tkinter.Label(my_w,  text='Vendor Name : ', width=10,anchor="c" )  
+    l2.grid(row=4,column=1)
+    tCompName = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tCompName.grid(row=4,column=2) 
+
+    l3 = tkinter.Label(my_w,  text='Give details : ', width=10,anchor="c" )  
+    l3.grid(row=4,column=1)
+    tCompDetails = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tCompDetails.grid(row=4,column=2) 
+
+    b1 = tkinter.Button(my_w,  text='Completed', width=10, command=lambda: compTheProj())  
+    b1.grid(row=6,column=2)
+
+def compTheProj() :
+    my_class = tCompProj.get("1.0",END)
+    query = """DELETE FROM Project WHERE ProjectNumber = %s"""
+    my_data = (my_class,)
+    myCursor.execute(query,my_data)
+    db_connection.commit()
+    tCompName.delete('1.0',END)
+    tCompDetails.delete('1.0',END) 
+    tCompProj.delete('1.0',END)
+    print("Query executed")
+
 def HelloCallBack() :
     C = tkinter.Button(main, text = "Customer", command = CustomerDial)
     V = tkinter.Button(main, text = "Vendor", command = VendorDial)
