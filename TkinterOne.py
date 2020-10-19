@@ -209,6 +209,24 @@ def PlaceOrder() :
 
 def give_order() :
     Cname = OrderCname.get('1.0',END)
+    Phone = OrderPhone.get('1.0',END)
+    Address = OrderAddress.get('1.0',END)
+    Amount = OrderAmount.get('1.0',END)
+    Project = OrderProject.get('1.0',END)
+    Item = OrderItem.get('1.0',END)
+
+    query = """INSERT INTO OrderTable VALUES (%s,%s,%s,%s,%s,%s)"""
+    myData = (Cname, Phone, Address, Amount, Project, Item)
+    myCursor.execute(query, myData)
+
+    db_connection.commit()
+
+    OrderCname.delete('1.0', END)
+    OrderPhone.delete('1.0', END)
+    OrderAddress.delete('1.0', END)
+    OrderAmount.delete('1.0', END)
+    OrderProject.delete('1.0', END)
+    OrderItem.delete('1.0', END)
 
     print('Give order')
 
