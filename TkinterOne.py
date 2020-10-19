@@ -403,6 +403,17 @@ def add_data_item() :
     print("Query executed")
 
 def CompleteOrder() :
+    myCursor.execute("SELECT * FROM OrderTable")
+    my_wo = tkinter.Tk()
+    my_wo.title("Requested orders ")
+    my_wo.geometry("250x250") 
+    i=0 
+    for Project in myCursor: 
+        for j in range(len(Project)):
+            e = Entry(my_wo, width=10, fg='blue') 
+            e.grid(row=i, column=j) 
+            e.insert(END, Project[j])
+        i=i+1
     print('Complete order')
 
 def TakesProjects() :
