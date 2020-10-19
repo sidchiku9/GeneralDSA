@@ -38,6 +38,8 @@ tCompDetails = None
 tTakeProj = None
 tTakeName = None
 tTakeDetails = None
+CompCustName = None
+CompCustPhone = None
 
 main = tkinter.Tk()
 main.title('Entry Window')
@@ -403,6 +405,9 @@ def add_data_item() :
     print("Query executed")
 
 def CompleteOrder() :
+
+    global CompCustName, CompCustPhone
+
     myCursor.execute("SELECT * FROM OrderTable")
     my_wo = tkinter.Tk()
     my_wo.title("Requested orders ")
@@ -415,6 +420,38 @@ def CompleteOrder() :
             e.insert(END, Project[j])
         i=i+1
     print('Complete order')
+
+    my_w = tkinter.Tk()
+    my_w.geometry("250x250")
+    my_w.title("Complete Order")
+    l0 = tkinter.Label(my_w,  text='Complete Order',font=('Helvetica', 16), width=30,anchor="c" )
+    l0.grid(row=1,column=1,columnspan=4)
+
+    l1 = tkinter.Label(my_w,  text='Customer Name : ', width=10,anchor="c" )  
+    l1.grid(row=3,column=1)
+    CompCustName = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    CompCustName.grid(row=3,column=2) 
+    
+    l2 = tkinter.Label(my_w,  text='Phone : ', width=10,anchor="c" )  
+    l2.grid(row=4,column=1)
+    CompCustPhone = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    CompCustPhone.grid(row=4,column=2) 
+
+    b1 = tkinter.Button(my_w,  text='Complete Order', width=40, command=lambda: comp_the_order())  
+    b1.grid(row=7,column=2) 
+    
+def comp_the_order() :
+    CustName = CompCustName.get('1.0', END)
+    CustPhone = CompCustPhone.get('1.0', END)
+
+    query = """DELETE FROM OrderTable WHERE Phone = %s"""
+    myData = (CustPhone,)
+
+    myCursor.execute(query, myData)
+    db_connection.commit()
+
+    CompCustName.delete('1.0', END)
+    CompCustPhone.delete('1.0', END)
 
 def TakesProjects() :
     global tTakeProj, tTakeName, tTakeDetails
