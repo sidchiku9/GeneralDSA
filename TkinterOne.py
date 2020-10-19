@@ -159,13 +159,13 @@ def GiveProject() :
     tGiveVend = tkinter.Text(my_w,  height=1, width=10,bg='white') 
     tGiveVend.grid(row=6,column=2) 
 
-    l3 = tkinter.Label(my_w,  text='Item : ', width=10,anchor="c" )  
-    l3.grid(row=7,column=1)
+    l5 = tkinter.Label(my_w,  text='Item : ', width=10,anchor="c" )  
+    l5.grid(row=7,column=1)
     tGiveItem = tkinter.Text(my_w,  height=1, width=10,bg='white') 
     tGiveItem.grid(row=7,column=2) 
 
-    l4 = tkinter.Label(my_w,  text='Details : ', width=10,anchor="c" )  
-    l4.grid(row=8,column=1)
+    l6 = tkinter.Label(my_w,  text='Details : ', width=10,anchor="c" )  
+    l6.grid(row=8,column=1)
     tGiveDetails = tkinter.Text(my_w,  height=1, width=10,bg='white') 
     tGiveDetails.grid(row=8,column=2) 
 
@@ -305,18 +305,54 @@ def CompleteOrder() :
     print('Complete order')
 
 def TakesProjects() :
+    global tTakeProj, tTakeName, tTakeDetails
     myCursor.execute("SELECT * FROM Project")
     my_wo = tkinter.Tk()
     my_wo.title("Requested projects ")
-    my_wo.geometry("400x250")
+    my_wo.geometry("400x250") 
     i=0 
-    for Item in myCursor: 
-        for j in range(6):
+    for Project in myCursor: 
+        for j in range(len(Project)):
             e = Entry(my_wo, width=10, fg='blue') 
             e.grid(row=i, column=j) 
-            e.insert(END, Item[j])
+            e.insert(END, Project[j])
         i=i+1
-    print('Takes projects')
+
+    my_w = tkinter.Tk()
+    my_w.geometry("400x400")
+    my_w.title("Take Project")
+    l0 = tkinter.Label(my_w,  text='Take Project',font=('Helvetica', 16), width=30,anchor="c" )
+    l0.grid(row=1,column=1,columnspan=4)
+
+    l1 = tkinter.Label(my_w,  text='Project Number : ', width=10,anchor="c" )  
+    l1.grid(row=3,column=1)
+    tTakeProj = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tTakeProj.grid(row=3,column=2) 
+    
+    l2 = tkinter.Label(my_w,  text='Vendor Name : ', width=10,anchor="c" )  
+    l2.grid(row=4,column=1)
+    tTakeName = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tTakeName.grid(row=4,column=2) 
+
+    l3 = tkinter.Label(my_w,  text='Give details : ', width=10,anchor="c" )  
+    l3.grid(row=4,column=1)
+    tTakeDetails = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    tTakeDetails.grid(row=4,column=2) 
+
+    b1 = tkinter.Button(my_w,  text='Take the project', width=10, command=lambda: taketheProj())  
+    b1.grid(row=6,column=2)
+
+def taketheProj() :
+    my_class = tTakeProj.get("1.0",END)
+    my_mark = tTakeDetails.get("1.0",END)
+    query = """UPDATE Project SET Details = %s WHERE ProjectNumber = %s"""
+    my_data = (my_mark,my_class,)
+    myCursor.execute(query,my_data)
+    db_connection.commit()
+    tTakeName.delete('1.0',END)
+    tTakeDetails.delete('1.0',END) 
+    tTakeProj.delete('1.0',END)
+    print("Query executed")
 
 def CompletesProjects() :
     myCursor.execute("SELECT * FROM Project")
