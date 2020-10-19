@@ -5,11 +5,48 @@ import mysql.connector
 db_connection = mysql.connector.connect(host = '127.0.0.1', user = 'root', password = 'Chiku$!d9',auth_plugin='mysql_native_password', database = 'Goconstruct')
 myCursor = db_connection.cursor()
 
+tItem = None 
+tQuantity = None
+tOT = None
+tNamePay = None
+tPhonePay = None
+tAddressPay = None
+tItemPay = None
+OrderCname = None 
+OrderPhone = None 
+OrderAddress = None 
+OrderAmount = None 
+OrderProject = None 
+OrderItem = None
+tGiveProj = None 
+tGiveName = None 
+tGiveNum = None 
+tGiveVend = None 
+tGiveItem = None 
+tGiveDetails = None
+tNameReq = None
+tPhoneReq = None
+tAddressReq = None
+tItemReq = None
+t1 = None
+t2 = None
+t3 = None
+t4 = None
+tCompProj = None
+tCompName = None
+tCompDetails = None
+tTakeProj = None
+tTakeName = None
+tTakeDetails = None
+
 main = tkinter.Tk()
 main.title('Entry Window')
+main.configure(bg='wheat')
+main.geometry("200x200")
 
 def CustomerDial() :
     Customer = tkinter.Tk()
+    Customer.configure(bg='wheat')
     Customer.title('Customer Functions')
     NeedsItems = tkinter.Button(Customer, text = "Needs Items", command = NeedItem)
     MakesPayments = tkinter.Button(Customer, text = "Makes Payments", command = MakePayment)
@@ -26,7 +63,7 @@ def NeedItem() :
     myCursor.execute("SELECT * FROM Item")
     my_wo = tkinter.Tk()
     my_wo.title("Available Items")
-    my_wo.geometry("400x250")
+    my_wo.geometry("250x250")
     i=0 
     for Item in myCursor: 
         for j in range(len(Item)):
@@ -36,7 +73,7 @@ def NeedItem() :
         i=i+1
 
     my_w = tkinter.Tk()
-    my_w.geometry("400x400")
+    my_w.geometry("250x250")
     my_w.title("Buy Items")
     l0 = tkinter.Label(my_w,  text='Needs Items',font=('Helvetica', 16), width=30,anchor="c" )
     l0.grid(row=1,column=1,columnspan=4)
@@ -75,7 +112,7 @@ def MakePayment() :
     myCursor.execute("SELECT * FROM Payment")
     my_wo = tkinter.Tk()
     my_wo.title("Requested payments ")
-    my_wo.geometry("400x250")
+    my_wo.geometry("250x250")
     i=0 
     for Item in myCursor: 
         for j in range(len(Item)):
@@ -85,7 +122,7 @@ def MakePayment() :
         i=i+1
 
     my_w = tkinter.Tk()
-    my_w.geometry("400x400")
+    my_w.geometry("250x250")
     my_w.title("Pay")
     l0 = tkinter.Label(my_w,  text='Make Payment',font=('Helvetica', 16), width=30,anchor="c" )
     l0.grid(row=1,column=1,columnspan=4)
@@ -128,13 +165,58 @@ def pay() :
     print("Query executed")
 
 def PlaceOrder() :
+    global OrderCname, OrderPhone, OrderAddress, OrderAmount, OrderProject, OrderItem
+
+    my_w = tkinter.Tk()
+    my_w.geometry("250x250")
+    my_w.title("Place Order")
+    l0 = tkinter.Label(my_w,  text='Place Order',font=('Helvetica', 16), width=30,anchor="c" )
+    l0.grid(row=1,column=1,columnspan=4)
+
+    l1 = tkinter.Label(my_w,  text='Customer Name : ', width=10,anchor="c" )  
+    l1.grid(row=3,column=1)
+    OrderCname = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    OrderCname.grid(row=3,column=2) 
+    
+    l2 = tkinter.Label(my_w,  text='Phone : ', width=10,anchor="c" )  
+    l2.grid(row=4,column=1)
+    OrderPhone = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    OrderPhone.grid(row=4,column=2) 
+
+    l3 = tkinter.Label(my_w,  text='Address : ', width=10,anchor="c" )  
+    l3.grid(row=5,column=1)
+    OrderAddress = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    OrderAddress.grid(row=5,column=2) 
+
+    l4 = tkinter.Label(my_w,  text='Amount : ', width=10,anchor="c" )  
+    l4.grid(row=6,column=1)
+    OrderAmount = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    OrderAmount.grid(row=6,column=2) 
+    
+    l5 = tkinter.Label(my_w,  text='Project : ', width=10,anchor="c" )  
+    l5.grid(row=7,column=1)
+    OrderProject = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    OrderProject.grid(row=7,column=2) 
+
+    l6 = tkinter.Label(my_w,  text='Item : ', width=10,anchor="c" )  
+    l6.grid(row=8,column=1)
+    OrderItem = tkinter.Text(my_w,  height=1, width=10,bg='white') 
+    OrderItem.grid(row=8,column=2)
+
+    b1 = tkinter.Button(my_w,  text='Place Order', width=10, command=lambda: give_order())  
+    b1.grid(row=10,column=2)
     print('Place order')
+
+def give_order() :
+    Cname = OrderCname.get('1.0',END)
+
+    print('Give order')
 
 def GiveProject() :
     global tGiveProj, tGiveName, tGiveNum, tGiveVend, tGiveItem, tGiveDetails
 
     my_w = tkinter.Tk()
-    my_w.geometry("400x400")
+    my_w.geometry("300x300")
     my_w.title("Give Project")
     l0 = tkinter.Label(my_w,  text='Give Project',font=('Helvetica', 16), width=30,anchor="c" )
     l0.grid(row=1,column=1,columnspan=4)
@@ -195,6 +277,7 @@ def giveTheProject() :
 
 def VendorDial() :
     Vendor = tkinter.Tk()
+    Vendor.configure(bg='wheat')
     Vendor.title('Vendor Functions')
     TakesPayment = tkinter.Button(Vendor, text = "Take Payments", command = TakePayments)
     SellsItem = tkinter.Button(Vendor, text = "Sell Items", command = SellsItems)
@@ -211,7 +294,7 @@ def TakePayments() :
     global tNameReq, tPhoneReq, tAddressReq, tItemReq
 
     my_w = tkinter.Tk()
-    my_w.geometry("400x400")
+    my_w.geometry("300x300")
     my_w.title("Request Payment")
     l0 = tkinter.Label(my_w,  text='Request Payments',font=('Helvetica', 16), width=30,anchor="c" )
     l0.grid(row=1,column=1,columnspan=4)
@@ -258,7 +341,7 @@ def SellsItems() :
     global t1, t2, t3, t4
 
     my_w = tkinter.Tk()
-    my_w.geometry("400x400")
+    my_w.geometry("250x250")
     my_w.title("Needs Items")
     l0 = tkinter.Label(my_w,  text='Needs Items',font=('Helvetica', 16), width=30,anchor="c" )
     l0.grid(row=1,column=1,columnspan=4)
@@ -309,7 +392,7 @@ def TakesProjects() :
     myCursor.execute("SELECT * FROM Project")
     my_wo = tkinter.Tk()
     my_wo.title("Requested projects ")
-    my_wo.geometry("400x250") 
+    my_wo.geometry("250x250") 
     i=0 
     for Project in myCursor: 
         for j in range(len(Project)):
@@ -319,7 +402,7 @@ def TakesProjects() :
         i=i+1
 
     my_w = tkinter.Tk()
-    my_w.geometry("400x400")
+    my_w.geometry("250x250")
     my_w.title("Take Project")
     l0 = tkinter.Label(my_w,  text='Take Project',font=('Helvetica', 16), width=30,anchor="c" )
     l0.grid(row=1,column=1,columnspan=4)
@@ -359,7 +442,7 @@ def CompletesProjects() :
     myCursor.execute("SELECT * FROM Project")
     my_wo = tkinter.Tk()
     my_wo.title("Requested projects ")
-    my_wo.geometry("400x250") 
+    my_wo.geometry("250x250") 
     i=0 
     for Project in myCursor: 
         for j in range(len(Project)):
@@ -369,7 +452,7 @@ def CompletesProjects() :
         i=i+1
 
     my_w = tkinter.Tk()
-    my_w.geometry("400x400")
+    my_w.geometry("250x250")
     my_w.title("Take Project")
     l0 = tkinter.Label(my_w,  text='Project Completed!',font=('Helvetica', 16), width=30,anchor="c" )
     l0.grid(row=1,column=1,columnspan=4)
@@ -404,8 +487,8 @@ def compTheProj() :
     print("Query executed")
 
 def HelloCallBack() :
-    C = tkinter.Button(main, text = "Customer", command = CustomerDial)
-    V = tkinter.Button(main, text = "Vendor", command = VendorDial)
+    C = tkinter.Button(main, text = "Customer", command = CustomerDial, compound = "c")
+    V = tkinter.Button(main, text = "Vendor", command = VendorDial, compound = "c")
     C.pack(padx=20, pady=20)
     V.pack(padx=20, pady=20)
 
