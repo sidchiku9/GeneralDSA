@@ -17,5 +17,21 @@
         "ostream": "cpp",
         "vector": "cpp",
         "iostream": "cpp"
-    }
+    },
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "127.0.0.1",
+            "port": 3300,
+            "driver": "MySQL",
+            "username": "root",
+            "password": "Chiku$!d9",
+            "name": "MySQLVSCode",
+            "database": "test",
+            "group": "3306"
+        }
+    ]
 }
