@@ -16,7 +16,8 @@
         "*.HLA*": "hlasm",
         "ostream": "cpp",
         "vector": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ios": "cpp"
     },
     "sqltools.connections": [
         {
